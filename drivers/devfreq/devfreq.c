@@ -768,7 +768,7 @@ EXPORT_SYMBOL(devfreq_policy_add_files);
 void devfreq_policy_remove_files(struct devfreq *devfreq,
 				 struct attribute_group attr_group)
 {
-	sysfs_remove_group(&devfreq->dev.kobj, &attr_group);;
+	sysfs_remove_group(&devfreq->dev.kobj, &attr_group);
 }
 EXPORT_SYMBOL(devfreq_policy_remove_files);
 
