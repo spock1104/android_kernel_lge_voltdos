@@ -121,11 +121,6 @@ static int devfreq_update_status(struct devfreq *devfreq, unsigned long freq)
 
 	cur_time = jiffies;
 
-	if (devfreq->state == KGSL_STATE_SLUMBER) {
-		ret = 0;
-		goto out;
-	}
-
 	prev_lev = devfreq_get_freq_level(devfreq, devfreq->previous_freq);
 	if (prev_lev < 0) {
 		ret = prev_lev;
