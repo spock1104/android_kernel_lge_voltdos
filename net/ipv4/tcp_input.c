@@ -4383,7 +4383,8 @@ static void tcp_sack_remove(struct tcp_sock *tp)
 
 			/* Zap this SACK, by moving forward any other SACKS. */
 			for (i=this_sack+1; i < num_sacks; i++)
-				tp->selective_acks[i-1] = tp->selective_acks[i];
+				if (i<4)
+					tp->selective_acks[i-1] = tp->selective_acks[i];
 			num_sacks--;
 			continue;
 		}
@@ -5272,7 +5273,7 @@ out:
 static int tcp_validate_incoming(struct sock *sk, struct sk_buff *skb,
 			      const struct tcphdr *th, int syn_inerr)
 {
-	const u8 *hash_location;
+	const u8 *hash_location = NULL;
 	struct tcp_sock *tp = tcp_sk(sk);
 
 	/* RFC1323: H1. Apply PAWS check first. */
@@ -5566,7 +5567,7 @@ EXPORT_SYMBOL(tcp_rcv_established);
 static int tcp_rcv_synsent_state_process(struct sock *sk, struct sk_buff *skb,
 					 const struct tcphdr *th, unsigned int len)
 {
-	const u8 *hash_location;
+	const u8 *hash_location = NULL;
 	struct inet_connection_sock *icsk = inet_csk(sk);
 	struct tcp_sock *tp = tcp_sk(sk);
 	struct tcp_cookie_values *cvp = tp->cookie_values;
