@@ -2063,8 +2063,6 @@ error_clk_off:
 	return status;
 }
 
-static int _status;
-
 /**
  * adreno_start() - Power up and initialize the GPU
  * @device: Pointer to the KGSL device to power up
