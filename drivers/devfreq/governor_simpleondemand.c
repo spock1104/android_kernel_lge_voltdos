@@ -13,17 +13,9 @@
 #include <linux/module.h>
 #include <linux/devfreq.h>
 #include <linux/math64.h>
-#include <linux/msm_adreno_devfreq.h>
 #include "governor.h"
 
 #define DEVFREQ_SIMPLE_ONDEMAND	"simple_ondemand"
-
-#define DFSO_UPTHRESHOLD	60
-#define DFSO_DOWNDIFFERENCTIAL	20
-
-unsigned int dfso_upthreshold = DFSO_UPTHRESHOLD;
-unsigned int dfso_downdifferential = DFSO_DOWNDIFFERENCTIAL;
-
 
 static int devfreq_simple_ondemand_func(struct devfreq *df,
 					unsigned long *freq,
